@@ -9,6 +9,12 @@ public class RawIngridientsSource : InteractableFurniture
     }
 
     public override bool PlaceItem(GameObject obj) {
+        Item objItm = obj.GetComponent<Item>();
+        Item itm = item.GetComponent<Item>();
+        if (itm != null && objItm.getCurrentStageIndex() == 0L && itm.GetType() == objItm.GetType()) {
+            Destroy(objItm.gameObject, 0f);
+            return true;
+        }
         return false;
     } 
 }
